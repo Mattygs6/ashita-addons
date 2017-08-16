@@ -117,3 +117,35 @@ end);
 -- ashita.register_event('render', function()
 
 -- end);
+
+
+
+-- matty, this is taken from logs.lua at0m0s made for outputting chat for v3
+---------------------------------------------------------------------------------------------------
+-- func: incoming_text
+-- desc: Event called when the addon is asked to handle an incoming chat line.
+---------------------------------------------------------------------------------------------------
+ashita.register_event('incoming_text', function(mode, message, modifiedmode, modifiedmessage, blocked)
+    -- Ignore invalid data..
+    if (name == nil or string.len(message) == 0) then
+        return false;
+    end
+
+    -- Create the file name and ensure the path to it exists..
+    local d = os.date('*t');
+    local n = string.format('%s_%.2u.%.2u.%.4u.log', name, d.month, d.day, d.year);
+    local p = string.format('%s/%s/', AshitaCore:GetAshitaInstallPath(), 'chatlogs');
+    if (not ashita.file.dir_exists(p)) then
+        ashita.file.create_dir(p);
+    end
+
+    -- Append the new chat line to the file..
+    local f = io.open(string.format('%s/%s', p, n), 'a');
+    if (f ~= nil) then
+        local t = os.date(timestamp, os.time());
+        f:write(t .. ' ' .. clean_str(message) .. '\n');
+        f:close();
+    end
+    
+    return false;
+end);
