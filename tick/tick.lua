@@ -40,11 +40,16 @@ local default_config =
 };
 local configs = default_config;
 local tick = { };
+tick.enabled = false;
 tick.timer_str = '__tick_timer';
 tick.timer_val = 0;
 tick.mp = 0;
 tick.mp_delta = 0;
 tick.mp_delta_str = '__tick_mp_delta';
+tick.mp_cloak = nil;
+tick.mp_refresh = 0;
+tick.mp_refresh_str = '__tick_mp_refresh';
+tick.mp_refresh_count = 0;
 tick.healing = 0;
 tick.init = false;
 tick.id = 0;
@@ -101,7 +106,7 @@ ashita.register_event('load', function()
     f:SetVisibility(true);
 
     local d = AshitaCore:GetFontManager():Create(tick.mp_delta_str);
-    d:SetColor(configs.defaultColor);
+    d:SetColor(configs.tickColor);
     d:SetFontFamily('Arial');
     d:SetFontHeight(8 * tick.scale_y);
     d:SetBold(true);
@@ -111,6 +116,18 @@ ashita.register_event('load', function()
     d:SetText(tostring(tick.mp_delta));
     d:SetLocked(true);
     d:SetVisibility(true);
+
+    local r = AshitaCore:GetFontManager():Create(tick.mp_refresh_str);
+    r:SetColor(configs.tickColor);
+    r:SetFontFamily('Arial');
+    r:SetFontHeight(8 * tick.scale_y);
+    r:SetBold(true);
+    r:SetRightJustified(true);
+    r:SetPositionX(0);
+    r:SetPositionY(0);
+    r:SetText(tostring(tick.mp_refresh));
+    r:SetLocked(true);
+    r:SetVisibility(true);
 
 end);
 
@@ -132,13 +149,28 @@ ashita.register_event('incoming_packet', function(id, size, data)
     -- Zone In packet
     if (id == 0x000A) then
         tick.id = struct.unpack('I', data, 0x04 + 1);
-        tick.targid = struct.unpack('H', data, 0x08 + 1)
+        tick.targid = struct.unpack('H', data, 0x08 + 1);
+        tick.max_mp = struct.unpack('i', data, 0xEC + 1);
+
+        if (tick.max_mp > 25) then
+            tick.enabled = true;
+        end
+
+        local playerName = struct.unpack('s', data, 0x84 + 1);
+
+        if (playerName == 'Mattyg') then
+            tick.mp_cloak = '"Vermillion Cloak"';
+        else
+            tick.mp_cloak = nil;
+        end
         -- print('zone:')
         -- print('id->' .. tick.id);
         -- print('targid->' .. tick.targid);
-    end
     -- Character Sync packet
-    if (id == 0x0067) then
+    elseif (id == 0x0067) then
+        if (not tick.enabled) then
+            return false;
+        end
         
         --local a = struct.unpack('H', data, 0x00 + 1); -- 5223
 
@@ -166,6 +198,11 @@ ashita.register_event('incoming_packet', function(id, size, data)
             if (tick.healing == 1) then
                 if (tick.timer_val == 0) then
                     tick.timer_val = os.time() + 20;
+                    tick.mp_refresh_count = 0;
+                    if (tick.mp_cloak ~= nil) then
+                        AshitaCore:GetChatManager():QueueCommand('/ac disable body', 1);
+                        AshitaCore:GetChatManager():QueueCommand('/equip body ' .. tick.mp_cloak, 1);
+                    end
                 end
             else
                 -- print('healing stopped');
@@ -174,9 +211,15 @@ ashita.register_event('incoming_packet', function(id, size, data)
                 tick.timer_val = 0;
             end
         --end
-    end
     -- Character Health packet
-    if (id == 0x00DF) then
+    elseif (id == 0x00DF) then
+        if (not tick.enabled) then
+            return false;
+        end
+
+        if (tick.healing == 0 and tick.timer_val ~= 0 and (tick.timer_val - os.time() < -5)) then
+            AshitaCore:GetChatManager():QueueCommand('/tick reset', 1);
+        end
 
         local tid = struct.unpack('I', data, 0x04 + 1);
         --local hp = struct.unpack('i', data, 0x08 + 1);
@@ -201,14 +244,30 @@ ashita.register_event('incoming_packet', function(id, size, data)
         end
 
         local delta = mp - tick.mp;
-        if (delta ~= 0) then
-            tick.mp_delta = mp - tick.mp;
-            tick.mp = tick.mp + tick.mp_delta;
-        end
+        
+        tick.mp = mp;
 
-        if (delta > 11) then
+        if (delta > 11 or delta < 0) then
+            tick.mp_delta = delta;
             if (tick.healing == 1 and tick.timer_val ~= 0) then
                 tick.timer_val = os.time() + 10;
+
+                if (tick.mp_cloak ~= nil) then
+                    AshitaCore:GetChatManager():QueueCommand('/ac disable body', 1);
+                    AshitaCore:GetChatManager():QueueCommand('/equip body ' .. tick.mp_cloak, 1);
+                end
+            end
+        elseif (delta > 0) then
+            tick.mp_refresh = delta;
+            if (tick.healing == 1) then
+                if (tick.timer_val ~= 0) then
+                    tick.mp_refresh_count = tick.mp_refresh_count + 1;
+
+                    if (tick.mp_cloak ~= nil and (tick.timer_val - os.time()) < 4) then
+                        print('[tick] RefreshCount: ' .. tick.mp_refresh_count);
+                        AshitaCore:GetChatManager():QueueCommand('/ac enable body', 1);
+                    end
+                end
             end
         end
 
@@ -219,7 +278,13 @@ ashita.register_event('incoming_packet', function(id, size, data)
         d:SetPositionX(mposx);
         d:SetPositionY(mposy);
         d:SetText(tostring(tick.mp_delta));
-        d:SetVisibility(true);
+        d:SetVisibility(tick.enabled);
+
+        local r = AshitaCore:GetFontManager():Get(tick.mp_refresh_str);
+        r:SetPositionX(mposx + (20 * tick.scale_x));
+        r:SetPositionY(mposy);
+        r:SetText(tostring(tick.mp_refresh));
+        r:SetVisibility(tick.enabled);
     end
 
     -- if (id == 0x0037) then
@@ -232,6 +297,9 @@ ashita.register_event('incoming_packet', function(id, size, data)
 end);
 
 ashita.register_event('outgoing_packet', function(id, size, data)
+    if (not tick.enabled) then
+        return false;
+    end
     if (id == 0x00E8) then
         -- local d = struct.unpack('h', data, 0x00);
         -- local e = struct.unpack('h', data, 0x02);
@@ -248,6 +316,10 @@ ashita.register_event('outgoing_packet', function(id, size, data)
 
         if (tick.healing == 1 and tick.timer_val ~= 0) then
             -- print('stopping healing');
+            if (tick.mp_cloak ~= nil) then
+                AshitaCore:GetChatManager():QueueCommand('/ac enable body', 1);
+            end
+
             tick.healing = 0;
         end
     end
@@ -270,6 +342,11 @@ ashita.register_event('command', function(cmd, nType)
         tick.healing = 0;
         local f = AshitaCore:GetFontManager():Get(tick.timer_str);
         f:SetColor(configs.defaultColor);
+
+        if (tick.mp_cloak ~= nil) then
+            AshitaCore:GetChatManager():QueueCommand('/ac enable body', 1);
+        end
+
         return true;
     end
 
@@ -285,30 +362,31 @@ end);
 -- desc: Event called when the addon is being rendered.
 ----------------------------------------------------------------------------------------------------
 ashita.register_event('render', function()
+    if (tick.enabled) then
+        -- Calculate offset position starting points..
+        local posx = tick.window_x - (101 * tick.scale_x);
+        local posy = tick.window_y - (15 * tick.scale_y);
 
-    -- Calculate offset position starting points..
-    local posx = tick.window_x - (101 * tick.scale_x);
-    local posy = tick.window_y - (15 * tick.scale_y);
+        local f = AshitaCore:GetFontManager():Get(tick.timer_str);
+        f:SetPositionX(posx);
+        f:SetPositionY(posy);
 
-    local f = AshitaCore:GetFontManager():Get(tick.timer_str);
-    f:SetPositionX(posx);
-    f:SetPositionY(posy);
-
-    if(tick.timer_val == 0) then
-        f:SetText('-');
-    else
-        local countdown = tick.timer_val - os.time();
-
-        if (countdown < 1) then
-            f:SetColor(configs.tickColor);
-        elseif (countdown < 4) then
-            f:SetColor(configs.warningColor);
+        if(tick.timer_val == 0) then
+            f:SetText('-');
         else
-            f:SetColor(configs.defaultColor);
+            local countdown = tick.timer_val - os.time();
+
+            if (countdown < 1) then
+                f:SetColor(configs.tickColor);
+            elseif (countdown < 4) then
+                f:SetColor(configs.warningColor);
+            else
+                f:SetColor(configs.defaultColor);
+            end
+
+            f:SetText(tostring(countdown));
         end
 
-        f:SetText(tostring(countdown));
+        f:SetVisibility(true);
     end
-
-    f:SetVisibility(true);
 end);
