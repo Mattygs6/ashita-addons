@@ -154,6 +154,8 @@ ashita.register_event('incoming_packet', function(id, size, data)
 
         if (tick.max_mp > 25) then
             tick.enabled = true;
+        else
+            tick.enabled = false;
         end
 
         local playerName = struct.unpack('s', data, 0x84 + 1);
@@ -216,7 +218,7 @@ ashita.register_event('incoming_packet', function(id, size, data)
         if (not tick.enabled) then
             return false;
         end
-
+-- TODO: look into auto reset issue.. more logic
         if (tick.healing == 0 and tick.timer_val ~= 0 and (tick.timer_val - os.time() < -5)) then
             AshitaCore:GetChatManager():QueueCommand('/tick reset', 1);
         end
