@@ -156,14 +156,21 @@ ashita.register_event('incoming_packet', function(id, size, data)
             tick.enabled = true;
         else
             tick.enabled = false;
+            -- redraw
+            AshitaCore:GetFontManager():Get(tick.mp_delta_str):SetVisibility(false);
+            AshitaCore:GetFontManager():Get(tick.mp_refresh_str):SetVisibility(false);
+            AshitaCore:GetFontManager():Get(tick.timer_str):SetVisibility(false);
         end
 
         local playerName = struct.unpack('s', data, 0x84 + 1);
 
-        if (playerName == 'Mattyg') then
+        -- make collection of refresh items, by slot, name, and level
+        -- and equip based on that logic.
+        local level = AshitaCore:GetDataManager():GetParty():GetMemberMainJobLevel(0);
+        if (level > 58) then
             tick.mp_cloak = '"Vermillion Cloak"';
         else
-            tick.mp_cloak = nil;
+           tick.mp_cloak = nil;
         end
         -- print('zone:')
         -- print('id->' .. tick.id);
@@ -251,7 +258,7 @@ ashita.register_event('incoming_packet', function(id, size, data)
 
         if (delta > 11 or delta < 0) then
             tick.mp_delta = delta;
-            if (tick.healing == 1 and tick.timer_val ~= 0) then
+            if (tick.healing == 1 and tick.timer_val < os.time() + 10) then
                 tick.timer_val = os.time() + 10;
 
                 if (tick.mp_cloak ~= nil) then
