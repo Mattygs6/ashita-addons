@@ -70,6 +70,17 @@ local function print_help(cmd, help)
     end
 end
 
+local function assign_refresh_items()
+    -- make collection of refresh items, by slot, name, and level
+    -- and equip based on that logic.
+    local level = AshitaCore:GetDataManager():GetParty():GetMemberMainJobLevel(0);
+    if (level > 58) then
+        tick.mp_cloak = '"Vermillion Cloak"';
+    else
+        tick.mp_cloak = nil;
+    end
+end
+
 ashita.register_event('load', function()
     -- Load the configuration file..
     -- configs = ashita.settings.load_merged(_addon.path .. '/settings/settings.json', configs);
@@ -164,14 +175,8 @@ ashita.register_event('incoming_packet', function(id, size, data)
 
         local playerName = struct.unpack('s', data, 0x84 + 1);
 
-        -- make collection of refresh items, by slot, name, and level
-        -- and equip based on that logic.
-        local level = AshitaCore:GetDataManager():GetParty():GetMemberMainJobLevel(0);
-        if (level > 58) then
-            tick.mp_cloak = '"Vermillion Cloak"';
-        else
-           tick.mp_cloak = nil;
-        end
+        assign_refresh_items();
+
         -- print('zone:')
         -- print('id->' .. tick.id);
         -- print('targid->' .. tick.targid);
@@ -199,6 +204,8 @@ ashita.register_event('incoming_packet', function(id, size, data)
             end
             return false;
         end
+
+        assign_refresh_items();
 
         -- TODO: see if same for multiple char
         -- toggle healing timer
