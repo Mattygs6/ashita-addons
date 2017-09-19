@@ -25,7 +25,7 @@
 
 _addon.author   = 'Mattyg';
 _addon.name     = 'tick';
-_addon.version  = '1.0.0';
+_addon.version  = '1.0.1';
 
 require 'common'
 
@@ -36,10 +36,19 @@ local default_config =
 {
     tickColor = 0xFF00FF00,
     warningColor = 0xFFFFFF00,
-    defaultColor = 0xFFFFFFFF
+    defaultColor = 0xFFFFFFFF,
+    font =
+    {
+        family      = 'Arial',
+        size        = 8,
+        bgcolor     = 0x8000007F,
+        bgvisible   = true,
+    }
 };
 local configs = default_config;
 local tick = { };
+
+tick.backdrop_str = '__tick_backdrop';
 tick.enabled = false;
 tick.timer_str = '__tick_timer';
 tick.timer_val = 0;
@@ -103,42 +112,53 @@ ashita.register_event('load', function()
     tick.scale_x = tick.window_x / tick.menu_x;
     tick.scale_y = tick.window_y / tick.menu_y;
 
+    local timerx = tick.window_x - (101 * tick.scale_x);
+    local posy = tick.window_y - (15 * tick.scale_y);
+
+    local deltax = tick.window_x - (80 * tick.scale_x);
+
     -- Create the text object
     local f = AshitaCore:GetFontManager():Create(tick.timer_str);
     f:SetColor(configs.defaultColor);
-    f:SetFontFamily('Arial');
-    f:SetFontHeight(8 * tick.scale_y);
+    f:SetFontFamily(configs.font.family);
+    f:SetFontHeight(configs.font.size * tick.scale_y);
     f:SetBold(true);
     f:SetRightJustified(true);
-    f:SetPositionX(0);
-    f:SetPositionY(0);
+    f:SetPositionX(timerx);
+    f:SetPositionY(posy);
     f:SetText('-');
     f:SetLocked(true);
-    f:SetVisibility(true);
+    f:SetVisibility(false);
+    f:GetBackground():SetColor(configs.font.bgcolor);
+    f:GetBackground():SetVisibility(configs.font.bgvisible);
 
     local d = AshitaCore:GetFontManager():Create(tick.mp_delta_str);
     d:SetColor(configs.tickColor);
-    d:SetFontFamily('Arial');
-    d:SetFontHeight(8 * tick.scale_y);
+    d:SetFontFamily(configs.font.family);
+    d:SetFontHeight(configs.font.size * tick.scale_y);
     d:SetBold(true);
     d:SetRightJustified(true);
-    d:SetPositionX(0);
-    d:SetPositionY(0);
+    d:SetPositionX(deltax);
+    d:SetPositionY(posy);
     d:SetText(tostring(tick.mp_delta));
     d:SetLocked(true);
-    d:SetVisibility(true);
+    d:SetVisibility(false);
+    d:GetBackground():SetColor(configs.font.bgcolor);
+    d:GetBackground():SetVisibility(configs.font.bgvisible);
 
     local r = AshitaCore:GetFontManager():Create(tick.mp_refresh_str);
     r:SetColor(configs.tickColor);
-    r:SetFontFamily('Arial');
-    r:SetFontHeight(8 * tick.scale_y);
+    r:SetFontFamily(configs.font.family);
+    r:SetFontHeight(configs.font.size * tick.scale_y);
     r:SetBold(true);
     r:SetRightJustified(true);
-    r:SetPositionX(0);
-    r:SetPositionY(0);
+    r:SetPositionX(deltax + (20 * tick.scale_x));
+    r:SetPositionY(posy);
     r:SetText(tostring(tick.mp_refresh));
     r:SetLocked(true);
-    r:SetVisibility(true);
+    r:SetVisibility(false);
+    r:GetBackground():SetColor(configs.font.bgcolor);
+    r:GetBackground():SetVisibility(configs.font.bgvisible);
 
 end);
 
@@ -150,6 +170,7 @@ ashita.register_event('unload', function()
     -- Cleanup the font objects..
     AshitaCore:GetFontManager():Delete(tick.timer_str);
     AshitaCore:GetFontManager():Delete(tick.mp_delta_str);
+    AshitaCore:GetFontManager():Delete(tick.mp_refresh_str);
 end);
 
 ---------------------------------------------------------------------------------------------------
@@ -287,18 +308,11 @@ ashita.register_event('incoming_packet', function(id, size, data)
             end
         end
 
-        local mposx = tick.window_x - (80 * tick.scale_x);
-        local mposy = tick.window_y - (15 * tick.scale_y);
-
         local d = AshitaCore:GetFontManager():Get(tick.mp_delta_str);
-        d:SetPositionX(mposx);
-        d:SetPositionY(mposy);
         d:SetText(tostring(tick.mp_delta));
         d:SetVisibility(tick.enabled);
 
         local r = AshitaCore:GetFontManager():Get(tick.mp_refresh_str);
-        r:SetPositionX(mposx + (20 * tick.scale_x));
-        r:SetPositionY(mposy);
         r:SetText(tostring(tick.mp_refresh));
         r:SetVisibility(tick.enabled);
     end
@@ -379,13 +393,7 @@ end);
 ----------------------------------------------------------------------------------------------------
 ashita.register_event('render', function()
     if (tick.enabled) then
-        -- Calculate offset position starting points..
-        local posx = tick.window_x - (101 * tick.scale_x);
-        local posy = tick.window_y - (15 * tick.scale_y);
-
         local f = AshitaCore:GetFontManager():Get(tick.timer_str);
-        f:SetPositionX(posx);
-        f:SetPositionY(posy);
 
         if(tick.timer_val == 0) then
             f:SetText('-');
