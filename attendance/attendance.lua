@@ -87,25 +87,46 @@ ashita.register_event('command', function(cmd, nType)
         targetName = target.Name;
     end
 
-    ashita.logging.normal('Zone', tostring(zone));
-    ashita.logging.normal('Boss', targetName);
+    local d = os.date('*t');
+    local n = string.format('%s_%.2u.%.2u.%.4u.log', 'attendance', d.month, d.day, d.year);
+    local p = string.format('%s/%s/', AshitaCore:GetAshitaInstallPath(), 'attendance');
+    if (not ashita.file.dir_exists(p)) then
+        ashita.file.create_dir(p);
+    end
 
-    print('[Attendance] -> Zone: ' .. tostring(zone));
-    print('[Attendance] -> Boss: ' .. targetName);
+    -- Append the new chat line to the file..
+    local f = io.open(string.format('%s/%s', p, n), 'a');
+    if (f ~= nil) then
+        local t = os.date(timestamp, os.time());
 
-    -- Handle the players local party..
-    for x = 0, 17 do
-        local playerName = party:GetMemberName(x);
-        if(zone == party:GetMemberZone(x)) then
-            ashita.logging.normal('Attendance', playerName);
-            print('[Attendance] -> ' .. playerName);
-        else
-            if (playerName ~= nil and playerName ~= '') then
-                ashita.logging.normal('Attendance: Wrong Zone', playerName .. ' -> ZoneId = ' .. tostring(party:GetMemberZone(x)));
-                print('[Attendance] -> Wrong Zone: ' .. playerName .. ' -> ZoneId = ' .. tostring(party:GetMemberZone(x)));
+        f:write('Timestamp: ' .. t .. '\n');
+        f:write('Zone: ' .. tostring(zone) .. '\n');
+        f:write('Boss: ' .. targetName .. '\n');
+
+        print('[Attendance] -> Zone: ' .. tostring(zone));
+        print('[Attendance] -> Boss: ' .. targetName);
+
+        -- Handle the players local party..
+        for x = 0, 17 do
+            local playerName = party:GetMemberName(x);
+            if(zone == party:GetMemberZone(x)) then
+                f:write(playerName .. '\n');
+                print('[Attendance] -> ' .. playerName);
+            else
+                if (playerName ~= nil and playerName ~= '') then
+                    f:write('Wrong Zone <> ' .. playerName .. ' -> ZoneId = ' .. tostring(party:GetMemberZone(x)) .. '\n');
+                    print('[Attendance] -> Wrong Zone <> ' .. playerName .. ' -> ZoneId = ' .. tostring(party:GetMemberZone(x)));
+                end
             end
         end
+
+        f:write('\n');
+        f:close();
+    else
+        print('[Attendance] - unable to write to file system.');
     end
+
+
 
     return true;
 end);
