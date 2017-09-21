@@ -25,7 +25,7 @@
 
 _addon.author   = 'Mattyg';
 _addon.name     = 'chaintimer';
-_addon.version  = '0.9.0';
+_addon.version  = '0.9.2';
 
 require 'common'
 require 'logging'
@@ -46,7 +46,18 @@ local default_config =
         size        = 10,
         bgcolor     = 0x8000007F,
         bgvisible   = true,
+    },
+    timers =
+    {
+        [10]        = {50,40,30,20,10,10},
+        [20]        = {100,80,60,40,20,20},
+        [30]        = {150,120,90,60,30,30},
+        [40]        = {200,160,120,80,40,40},
+        [50]        = {250,200,150,100,50,50},
+        [60]        = {300,240,180,120,90,60},
+        [75]        = {360,300,240,165,105,60}
     }
+    
 };
 local configs = default_config;
 local chaintimer = { };
@@ -75,23 +86,30 @@ end
 local function get_countdown(num)
 
     -- 61-75 - need to mod by level
+    local ctimers;
+    for maxlevel,timers in ipairs(configs.timers) do
 
-    if(num == 0) then
-        chaintimer.timer_val = os.time() + 360;
-    elseif (num == 1) then
-        chaintimer.timer_val = os.time() + 300;
-    elseif (num == 2) then
-        chaintimer.timer_val = os.time() + 240;
-    elseif (num == 3) then
-        chaintimer.timer_val = os.time() + 165;
-    elseif (num == 4) then
-        chaintimer.timer_val = os.time() + 105;
-    else
-        chaintimer.timer_val = os.time() + 60;
+        if (chaintimer.level <= maxlevel) then
+            ctimers =  timers;
+            break
+        end
+    end
+
+    if (ctimers == nil) then
+        return false;
     end
 
     local b = AshitaCore:GetFontManager():Get(chaintimer.chain_num_str);
     b:SetText(tostring(num));
+
+    num = num + 1;
+
+    if (num > 6) then
+        num = 6;
+    end
+
+    chaintimer.timer_val = os.time() + ctimers[num];
+
 
   -- look into imgui
     -- imgui.SetNextWindowSize(200, 100, ImGuiSetCond_Always);
@@ -273,12 +291,12 @@ ashita.register_event('incoming_text', function(mode, chat)
 
             get_countdown(num);
 
-        elseif (string.match(chat, 'limit points') or string.match(chat, 'EXP points')) then
+        elseif (string.match(chat, 'limit points') or string.match(chat, 'experience points')) then
 
             --print(mode);
             get_countdown(0);
-        else
-            print('nothing');
+        -- else
+        --     print('nothing');
         end
     end
 
