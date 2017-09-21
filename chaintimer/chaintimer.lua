@@ -87,9 +87,8 @@ local function get_countdown(num)
 
     -- 61-75 - need to mod by level
     local ctimers;
-    for maxlevel,timers in ipairs(configs.timers) do
-
-        if (chaintimer.level <= maxlevel) then
+    for maxlevel,timers in pairs(configs.timers) do
+        if (chaintimer.charLevel <= maxlevel) then
             ctimers =  timers;
             break
         end
@@ -315,7 +314,6 @@ ashita.register_event('incoming_packet', function(id, size, data)
 
     -- Character Sync packet
     elseif (id == 0x0067) then
-
         chaintimer.charLevel = AshitaCore:GetDataManager():GetParty():GetMemberMainJobLevel(0);
     end
 
