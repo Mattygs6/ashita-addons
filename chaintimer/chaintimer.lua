@@ -25,7 +25,7 @@
 
 _addon.author   = 'Mattyg';
 _addon.name     = 'chaintimer';
-_addon.version  = '0.9.2';
+_addon.version  = '0.9.3';
 
 require 'common'
 require 'logging'
@@ -36,7 +36,7 @@ require 'ffxi.targets'
 ----------------------------------------------------------------------------------------------------
 local default_config =
 {
-    textColor = 0xFF444444,
+    textColor = 0xFFFFFFFF,
     clearColor = 0xFFFF0000,
     warningColor = 0xFFFFFF00,
     defaultColor = 0xFF33FF33,
@@ -44,18 +44,18 @@ local default_config =
     {
         family      = 'Arial',
         size        = 10,
-        bgcolor     = 0x8000007F,
+        bgcolor     = 0x80333333,
         bgvisible   = true,
     },
     timers =
     {
-        [10]        = {50,40,30,20,10,10},
-        [20]        = {100,80,60,40,20,20},
-        [30]        = {150,120,90,60,30,30},
-        [40]        = {200,160,120,80,40,40},
-        [50]        = {250,200,150,100,50,50},
-        [60]        = {300,240,180,120,90,60},
-        [75]        = {360,300,240,165,105,60}
+        {10,50,40,30,20,10,10},
+        {20,100,80,60,40,20,20},
+        {30,150,120,90,60,30,30},
+        {40,200,160,120,80,40,40},
+        {50,250,200,150,100,50,50},
+        {60,300,240,180,120,90,60},
+        {75,360,300,240,165,105,60}
     }
     
 };
@@ -68,6 +68,7 @@ chaintimer.chain_label_str = '__chaintimer_chain_label';
 chaintimer.chain_num_str = '__chaintimer_chain_num';
 chaintimer.timer_val = 0;
 chaintimer.charLevel = 0;
+chaintimer.lastChain = 0;
 
 ----------------------------------------------------------------------------------------------------
 -- func: print_help
@@ -87,8 +88,9 @@ local function get_countdown(num)
 
     -- 61-75 - need to mod by level
     local ctimers;
-    for maxlevel,timers in pairs(configs.timers) do
-        if (chaintimer.charLevel <= maxlevel) then
+    for _,timers in ipairs(configs.timers) do
+        --print(_);
+        if (chaintimer.charLevel <= timers[1]) then
             ctimers =  timers;
             break
         end
@@ -98,16 +100,13 @@ local function get_countdown(num)
         return false;
     end
 
-    local b = AshitaCore:GetFontManager():Get(chaintimer.chain_num_str);
-    b:SetText(tostring(num));
+    chaintimer.lastChain = num;
 
-    num = num + 1;
-
-    if (num > 6) then
-        num = 6;
+    if (num > 5) then
+        num = 5;
     end
 
-    chaintimer.timer_val = os.time() + ctimers[num];
+    chaintimer.timer_val = os.time() + ctimers[num + 2];
 
 
   -- look into imgui
@@ -185,7 +184,6 @@ ashita.register_event('load', function()
     f:SetColor(configs.textColor);
     f:SetFontFamily(configs.font.family);
     f:SetFontHeight(configs.font.size * chaintimer.scale_y);
-    f:SetBold(true);
     f:SetRightJustified(true);
     f:SetPositionX(posx);
     f:SetPositionY(posy);
@@ -201,7 +199,7 @@ ashita.register_event('load', function()
     d:SetFontHeight(configs.font.size * chaintimer.scale_y);
     d:SetBold(true);
     d:SetRightJustified(false);
-    d:SetPositionX(posx + (20 * chaintimer.scale_x));
+    d:SetPositionX(posx + (chaintimer.scale_x));
     d:SetPositionY(posy);
     d:SetText('-');
     d:SetLocked(true);
@@ -213,9 +211,8 @@ ashita.register_event('load', function()
     c:SetColor(configs.textColor);
     c:SetFontFamily(configs.font.family);
     c:SetFontHeight(configs.font.size * chaintimer.scale_y);
-    c:SetBold(true);
     c:SetRightJustified(true);
-    c:SetPositionX(posx + (100 * chaintimer.scale_x));
+    c:SetPositionX(posx + (70 * chaintimer.scale_x));
     c:SetPositionY(posy);
     c:SetText('Chain: ');
     c:SetLocked(true);
@@ -229,7 +226,7 @@ ashita.register_event('load', function()
     b:SetFontHeight(configs.font.size * chaintimer.scale_y);
     b:SetBold(true);
     b:SetRightJustified(false);
-    b:SetPositionX(posx + (115 * chaintimer.scale_x));
+    b:SetPositionX(posx + (70 * chaintimer.scale_x));
     b:SetPositionY(posy);
     b:SetText('-');
     b:SetLocked(true);
@@ -267,7 +264,7 @@ end);
 ---------------------------------------------------------------------------------------------------
 ashita.register_event('incoming_text', function(mode, chat)
     
-    if(mode == 131) then
+    if(mode == 131 or mode == 121) then
         if (string.match(chat, 'Limit chain') or string.match(chat, 'EXP chain')) then
 
             local i,j = string.find(
@@ -346,6 +343,9 @@ ashita.register_event('render', function()
 
         f:SetText(tostring(countdown));
     end
+
+    local b = AshitaCore:GetFontManager():Get(chaintimer.chain_num_str);
+    b:SetText(tostring(chaintimer.lastChain)); -- .. ' - Lvl. ' ..  chaintimer.charLevel);
 
     f:SetVisibility(true);
 end);

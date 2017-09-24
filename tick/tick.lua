@@ -25,7 +25,7 @@
 
 _addon.author   = 'Mattyg';
 _addon.name     = 'tick';
-_addon.version  = '1.0.1';
+_addon.version  = '1.0.2';
 
 require 'common'
 
@@ -41,7 +41,7 @@ local default_config =
     {
         family      = 'Arial',
         size        = 8,
-        bgcolor     = 0x8000007F,
+        bgcolor     = 0x80333333,
         bgvisible   = true,
     }
 };
@@ -112,7 +112,7 @@ ashita.register_event('load', function()
     tick.scale_x = tick.window_x / tick.menu_x;
     tick.scale_y = tick.window_y / tick.menu_y;
 
-    local timerx = tick.window_x - (101 * tick.scale_x);
+    local timerx = tick.window_x - (110 * tick.scale_x);
     local posy = tick.window_y - (15 * tick.scale_y);
 
     local deltax = tick.window_x - (80 * tick.scale_x);
@@ -301,7 +301,6 @@ ashita.register_event('incoming_packet', function(id, size, data)
                     tick.mp_refresh_count = tick.mp_refresh_count + 1;
 
                     if (tick.mp_cloak ~= nil and (tick.timer_val - os.time()) < 4) then
-                        print('[tick] RefreshCount: ' .. tick.mp_refresh_count);
                         AshitaCore:GetChatManager():QueueCommand('/ac enable body', 1);
                     end
                 end
@@ -350,6 +349,7 @@ ashita.register_event('outgoing_packet', function(id, size, data)
                 AshitaCore:GetChatManager():QueueCommand('/ac enable body', 1);
             end
 
+            print('[tick] RefreshCount: ' .. tick.mp_refresh_count);
             tick.healing = 0;
         end
     end
