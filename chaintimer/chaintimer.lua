@@ -25,7 +25,7 @@
 
 _addon.author   = 'Mattyg';
 _addon.name     = 'chaintimer';
-_addon.version  = '0.9.3';
+_addon.version  = '0.9.4';
 
 require 'common'
 require 'logging'
@@ -89,7 +89,7 @@ local function get_countdown(num)
     -- 61-75 - need to mod by level
     local ctimers;
     for _,timers in ipairs(configs.timers) do
-        --print(_);
+        --print(_ .. ' - ' .. timers[1] .. ' - ' .. chaintimer.charLevel);
         if (chaintimer.charLevel <= timers[1]) then
             ctimers =  timers;
             break
