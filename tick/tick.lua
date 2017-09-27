@@ -25,7 +25,7 @@
 
 _addon.author   = 'Mattyg';
 _addon.name     = 'tick';
-_addon.version  = '1.0.2';
+_addon.version  = '1.1.0';
 
 require 'common'
 
@@ -55,7 +55,7 @@ tick.timer_val = 0;
 tick.mp = 0;
 tick.mp_delta = 0;
 tick.mp_delta_str = '__tick_mp_delta';
-tick.mp_cloak = nil;
+tick.refresh_set_name = nil;
 tick.mp_refresh = 0;
 tick.mp_refresh_str = '__tick_mp_refresh';
 tick.mp_refresh_count = 0;
@@ -84,9 +84,9 @@ local function assign_refresh_items()
     -- and equip based on that logic.
     local level = AshitaCore:GetDataManager():GetParty():GetMemberMainJobLevel(0);
     if (level > 58) then
-        tick.mp_cloak = '"Vermillion Cloak"';
+        tick.refresh_set_name = 'Refresh'; -- TODO: This could be a setting.
     else
-        tick.mp_cloak = nil;
+        tick.refresh_set_name = nil;
     end
 end
 
@@ -178,6 +178,8 @@ end);
 -- desc: Called when our addon receives an incoming packet.
 ---------------------------------------------------------------------------------------------------
 ashita.register_event('incoming_packet', function(id, size, data)
+    -- TODO: Somehow if taking dmg
+
     -- Zone In packet
     if (id == 0x000A) then
         tick.id = struct.unpack('I', data, 0x04 + 1);
@@ -236,9 +238,9 @@ ashita.register_event('incoming_packet', function(id, size, data)
                 if (tick.timer_val == 0) then
                     tick.timer_val = os.time() + 20;
                     tick.mp_refresh_count = 0;
-                    if (tick.mp_cloak ~= nil) then
-                        AshitaCore:GetChatManager():QueueCommand('/ac disable body', 1);
-                        AshitaCore:GetChatManager():QueueCommand('/equip body ' .. tick.mp_cloak, 1);
+                    if (tick.refresh_set_name ~= nil) then
+                        AshitaCore:GetChatManager():QueueCommand('/ac set ' .. tick.refresh_set_name, 1);
+                        AshitaCore:GetChatManager():QueueCommand('/ac disable', 1);
                     end
                 end
             else
@@ -289,9 +291,9 @@ ashita.register_event('incoming_packet', function(id, size, data)
             if (tick.healing == 1 and tick.timer_val < os.time() + 10) then
                 tick.timer_val = os.time() + 10;
 
-                if (tick.mp_cloak ~= nil) then
-                    AshitaCore:GetChatManager():QueueCommand('/ac disable body', 1);
-                    AshitaCore:GetChatManager():QueueCommand('/equip body ' .. tick.mp_cloak, 1);
+                if (tick.refresh_set_name ~= nil) then
+                    AshitaCore:GetChatManager():QueueCommand('/ac set ' .. tick.refresh_set_name, 1);
+                    AshitaCore:GetChatManager():QueueCommand('/ac disable', 1);
                 end
             end
         elseif (delta > 0) then
@@ -300,8 +302,8 @@ ashita.register_event('incoming_packet', function(id, size, data)
                 if (tick.timer_val ~= 0) then
                     tick.mp_refresh_count = tick.mp_refresh_count + 1;
 
-                    if (tick.mp_cloak ~= nil and (tick.timer_val - os.time()) < 4) then
-                        AshitaCore:GetChatManager():QueueCommand('/ac enable body', 1);
+                    if (tick.refresh_set_name ~= nil and (tick.timer_val - os.time()) < 4) then
+                        AshitaCore:GetChatManager():QueueCommand('/ac enable', 1);
                     end
                 end
             end
@@ -345,8 +347,8 @@ ashita.register_event('outgoing_packet', function(id, size, data)
 
         if (tick.healing == 1 and tick.timer_val ~= 0) then
             -- print('stopping healing');
-            if (tick.mp_cloak ~= nil) then
-                AshitaCore:GetChatManager():QueueCommand('/ac enable body', 1);
+            if (tick.refresh_set_name ~= nil) then
+                AshitaCore:GetChatManager():QueueCommand('/ac enable', 1);
             end
 
             print('[tick] RefreshCount: ' .. tick.mp_refresh_count);
@@ -373,8 +375,8 @@ ashita.register_event('command', function(cmd, nType)
         local f = AshitaCore:GetFontManager():Get(tick.timer_str);
         f:SetColor(configs.defaultColor);
 
-        if (tick.mp_cloak ~= nil) then
-            AshitaCore:GetChatManager():QueueCommand('/ac enable body', 1);
+        if (tick.refresh_set_name ~= nil) then
+            AshitaCore:GetChatManager():QueueCommand('/ac enable', 1);
         end
 
         return true;
