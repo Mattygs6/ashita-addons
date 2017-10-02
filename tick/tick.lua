@@ -25,7 +25,7 @@
 
 _addon.author   = 'Mattyg';
 _addon.name     = 'tick';
-_addon.version  = '1.1.0';
+_addon.version  = '1.1.1';
 
 require 'common'
 
@@ -55,7 +55,7 @@ tick.timer_val = 0;
 tick.mp = 0;
 tick.mp_delta = 0;
 tick.mp_delta_str = '__tick_mp_delta';
-tick.refresh_set_name = nil;
+tick.refresh_command = nil;
 tick.mp_refresh = 0;
 tick.mp_refresh_str = '__tick_mp_refresh';
 tick.mp_refresh_count = 0;
@@ -84,9 +84,9 @@ local function assign_refresh_items()
     -- and equip based on that logic.
     local level = AshitaCore:GetDataManager():GetParty():GetMemberMainJobLevel(0);
     if (level > 58) then
-        tick.refresh_set_name = 'Refresh'; -- TODO: This could be a setting.
+        tick.refresh_command = '/acrefresh'; -- TODO: This could be a setting.
     else
-        tick.refresh_set_name = nil;
+        tick.refresh_command = nil;
     end
 end
 
@@ -238,9 +238,10 @@ ashita.register_event('incoming_packet', function(id, size, data)
                 if (tick.timer_val == 0) then
                     tick.timer_val = os.time() + 20;
                     tick.mp_refresh_count = 0;
-                    if (tick.refresh_set_name ~= nil) then
-                        AshitaCore:GetChatManager():QueueCommand('/ac set ' .. tick.refresh_set_name, 1);
-                        AshitaCore:GetChatManager():QueueCommand('/ac disable', 1);
+                    if (tick.refresh_command ~= nil) then
+                        AshitaCore:GetChatManager():QueueCommand(tick.refresh_command, 1);
+                        -- /equiprefresh  ... using set would be great...but it doesn't equip if disabled
+                        --AshitaCore:GetChatManager():QueueCommand('/ac disable', 1);
                     end
                 end
             else
@@ -291,9 +292,10 @@ ashita.register_event('incoming_packet', function(id, size, data)
             if (tick.healing == 1 and tick.timer_val < os.time() + 10) then
                 tick.timer_val = os.time() + 10;
 
-                if (tick.refresh_set_name ~= nil) then
-                    AshitaCore:GetChatManager():QueueCommand('/ac set ' .. tick.refresh_set_name, 1);
-                    AshitaCore:GetChatManager():QueueCommand('/ac disable', 1);
+                if (tick.refresh_command ~= nil) then
+                    AshitaCore:GetChatManager():QueueCommand(tick.refresh_command, 1);
+                    -- /equiprefresh
+                    --AshitaCore:GetChatManager():QueueCommand('/ac disable', 1);
                 end
             end
         elseif (delta > 0) then
@@ -302,7 +304,7 @@ ashita.register_event('incoming_packet', function(id, size, data)
                 if (tick.timer_val ~= 0) then
                     tick.mp_refresh_count = tick.mp_refresh_count + 1;
 
-                    if (tick.refresh_set_name ~= nil and (tick.timer_val - os.time()) < 4) then
+                    if (tick.refresh_command ~= nil and (tick.timer_val - os.time()) < 4) then
                         AshitaCore:GetChatManager():QueueCommand('/ac enable', 1);
                     end
                 end
@@ -347,7 +349,7 @@ ashita.register_event('outgoing_packet', function(id, size, data)
 
         if (tick.healing == 1 and tick.timer_val ~= 0) then
             -- print('stopping healing');
-            if (tick.refresh_set_name ~= nil) then
+            if (tick.refresh_command ~= nil) then
                 AshitaCore:GetChatManager():QueueCommand('/ac enable', 1);
             end
 
@@ -375,7 +377,7 @@ ashita.register_event('command', function(cmd, nType)
         local f = AshitaCore:GetFontManager():Get(tick.timer_str);
         f:SetColor(configs.defaultColor);
 
-        if (tick.refresh_set_name ~= nil) then
+        if (tick.refresh_command ~= nil) then
             AshitaCore:GetChatManager():QueueCommand('/ac enable', 1);
         end
 
