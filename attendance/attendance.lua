@@ -135,7 +135,7 @@ ashita.register_event('command', function(cmd, nType)
                     local playerZone = party:GetMemberZone(x);
                     local playerZoneName = 'unknown';
                     if (playerZone > 0) then
-                        local playerZoneObj = configs[zone];
+                        local playerZoneObj = configs[playerZone];
                         if (playerZoneObj ~= nil) then
                             playerZoneName = playerZoneObj.zoneName;
                         end
