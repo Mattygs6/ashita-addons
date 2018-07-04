@@ -137,7 +137,7 @@ ashita.register_event('command', function(cmd, nType)
                     if (playerZone > 0) then
                         local playerZoneObj = configs[zone];
                         if (playerZoneObj ~= nil) then
-                            zoneName = playerZoneObj.zoneName;
+                            playerZoneName = playerZoneObj.zoneName;
                         end
                     end
                     f:write('Wrong Zone <> ' .. playerName .. ' -> ZoneId = ' .. playerZoneName .. '\n');
