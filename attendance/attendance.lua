@@ -25,7 +25,7 @@
 
 _addon.author   = 'Mattyg';
 _addon.name     = 'attendance';
-_addon.version  = '1.0.0';
+_addon.version  = '1.1.0';
 
 require 'common'
 require 'logging'
@@ -53,11 +53,16 @@ local function print_help(cmd, help)
     end
 end
 
--- ashita.register_event('load', function()
---     -- Load the configuration file..
---     -- configs = ashita.settings.load_merged(_addon.path .. '/settings/settings.json', configs);
+----------------------------------------------------------------------------------------------------
+-- Configurations
+----------------------------------------------------------------------------------------------------
+local default_config = {};
+local configs = default_config;
 
--- end);
+ashita.register_event('load', function()
+    -- Load the configuration file..
+    configs = ashita.settings.load_merged(_addon.path .. '/settings/settings.json', configs);
+end);
 
 ----------------------------------------------------------------------------------------------------
 -- func: unload
@@ -78,13 +83,26 @@ ashita.register_event('command', function(cmd, nType)
     if (args[1] ~= '/attendance') then
         return false;
     end
-
+    
+    local event = args[2];
     local party = AshitaCore:GetDataManager():GetParty();
     local zone = party:GetMemberZone(0);
-    local target = ashita.ffxi.targets.get_target('t');
-    local targetName = 'HNM';
-    if (target ~= nil) then
-        targetName = target.Name;
+    local zoneName = 'unknown';
+
+    if (zone > 0) then
+        local zoneObj = configs[zone];
+        if (zoneObj ~= nil) then
+            zoneName = zoneObj.zoneName;
+        end
+    end
+
+    if (event == nil or event == '') then
+        local target = ashita.ffxi.targets.get_target('t');
+        if(target ~= nil) then
+            event = target.Name;
+        else
+            event = 'HNM';
+        end
     end
 
     local d = os.date('*t');
@@ -100,11 +118,11 @@ ashita.register_event('command', function(cmd, nType)
         local t = os.date(timestamp, os.time());
 
         f:write('Timestamp: ' .. t .. '\n');
-        f:write('Zone: ' .. tostring(zone) .. '\n');
-        f:write('Boss: ' .. targetName .. '\n');
+        f:write('Zone: ' .. zoneName .. '\n');
+        f:write('Event: ' .. event .. '\n');
 
-        print('[Attendance] -> Zone: ' .. tostring(zone));
-        print('[Attendance] -> Boss: ' .. targetName);
+        print('[Attendance] -> Zone: ' .. zoneName);
+        print('[Attendance] -> Event: ' .. event);
 
         -- Handle the players local party..
         for x = 0, 17 do
@@ -114,8 +132,16 @@ ashita.register_event('command', function(cmd, nType)
                 print('[Attendance] -> ' .. playerName);
             else
                 if (playerName ~= nil and playerName ~= '') then
-                    f:write('Wrong Zone <> ' .. playerName .. ' -> ZoneId = ' .. tostring(party:GetMemberZone(x)) .. '\n');
-                    print('[Attendance] -> Wrong Zone <> ' .. playerName .. ' -> ZoneId = ' .. tostring(party:GetMemberZone(x)));
+                    local playerZone = party:GetMemberZone(x);
+                    local playerZoneName = 'unknown';
+                    if (playerZone > 0) then
+                        local playerZoneObj = configs[zone];
+                        if (playerZoneObj ~= nil) then
+                            zoneName = playerZoneObj.zoneName;
+                        end
+                    end
+                    f:write('Wrong Zone <> ' .. playerName .. ' -> ZoneId = ' .. playerZoneName .. '\n');
+                    print('[Attendance] -> Wrong Zone <> ' .. playerName .. ' -> ZoneId = ' .. playerZoneName);
                 end
             end
         end

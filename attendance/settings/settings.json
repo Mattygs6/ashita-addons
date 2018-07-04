@@ -1,0 +1,1190 @@
+[
+    {
+        "zoneId": 1,
+        "zoneName": "Phanauet Channel"
+    },
+    {
+        "zoneId": 2,
+        "zoneName": "Carpenters Landing"
+    },
+    {
+        "zoneId": 3,
+        "zoneName": "Manaclipper"
+    },
+    {
+        "zoneId": 4,
+        "zoneName": "Bibiki Bay"
+    },
+    {
+        "zoneId": 5,
+        "zoneName": "Uleguerand Range"
+    },
+    {
+        "zoneId": 6,
+        "zoneName": "Bearclaw Pinnacle"
+    },
+    {
+        "zoneId": 7,
+        "zoneName": "Attohwa Chasm"
+    },
+    {
+        "zoneId": 8,
+        "zoneName": "Boneyard Gully"
+    },
+    {
+        "zoneId": 9,
+        "zoneName": "PsoXja"
+    },
+    {
+        "zoneId": 10,
+        "zoneName": "The Shrouded Maw"
+    },
+    {
+        "zoneId": 11,
+        "zoneName": "Oldton Movalpolos"
+    },
+    {
+        "zoneId": 12,
+        "zoneName": "Newton Movalpolos"
+    },
+    {
+        "zoneId": 13,
+        "zoneName": "Mine Shaft 2716"
+    },
+    {
+        "zoneId": 14,
+        "zoneName": "Hall of Transference"
+    },
+    {
+        "zoneId": 15,
+        "zoneName": "Abyssea-Konschtat"
+    },
+    {
+        "zoneId": 16,
+        "zoneName": "Promyvion-Holla"
+    },
+    {
+        "zoneId": 17,
+        "zoneName": "Spire of Holla"
+    },
+    {
+        "zoneId": 18,
+        "zoneName": "Promyvion-Dem"
+    },
+    {
+        "zoneId": 19,
+        "zoneName": "Spire of Dem"
+    },
+    {
+        "zoneId": 20,
+        "zoneName": "Promyvion-Mea"
+    },
+    {
+        "zoneId": 21,
+        "zoneName": "Spire of Mea"
+    },
+    {
+        "zoneId": 22,
+        "zoneName": "Promyvion-Vahzl"
+    },
+    {
+        "zoneId": 23,
+        "zoneName": "Spire of Vahzl"
+    },
+    {
+        "zoneId": 24,
+        "zoneName": "Lufaise Meadows"
+    },
+    {
+        "zoneId": 25,
+        "zoneName": "Misareaux Coast"
+    },
+    {
+        "zoneId": 26,
+        "zoneName": "Tavnazian Safehold"
+    },
+    {
+        "zoneId": 27,
+        "zoneName": "Phomiuna Aqueducts"
+    },
+    {
+        "zoneId": 28,
+        "zoneName": "Sacrarium"
+    },
+    {
+        "zoneId": 29,
+        "zoneName": "Riverne-Site B01"
+    },
+    {
+        "zoneId": 30,
+        "zoneName": "Riverne-Site A01"
+    },
+    {
+        "zoneId": 31,
+        "zoneName": "Monarch Linn"
+    },
+    {
+        "zoneId": 32,
+        "zoneName": "Sealions Den"
+    },
+    {
+        "zoneId": 33,
+        "zoneName": "AlTaieu"
+    },
+    {
+        "zoneId": 34,
+        "zoneName": "Grand Palace of HuXzoi"
+    },
+    {
+        "zoneId": 35,
+        "zoneName": "The Garden of RuHmet"
+    },
+    {
+        "zoneId": 36,
+        "zoneName": "Empyreal Paradox"
+    },
+    {
+        "zoneId": 37,
+        "zoneName": "Temenos"
+    },
+    {
+        "zoneId": 38,
+        "zoneName": "Apollyon"
+    },
+    {
+        "zoneId": 39,
+        "zoneName": "Dynamis-Valkurm"
+    },
+    {
+        "zoneId": 40,
+        "zoneName": "Dynamis-Buburimu"
+    },
+    {
+        "zoneId": 41,
+        "zoneName": "Dynamis-Qufim"
+    },
+    {
+        "zoneId": 42,
+        "zoneName": "Dynamis-Tavnazia"
+    },
+    {
+        "zoneId": 43,
+        "zoneName": "Diorama Abdhaljs-Ghelsba"
+    },
+    {
+        "zoneId": 44,
+        "zoneName": "Abdhaljs Isle-Purgonorgo"
+    },
+    {
+        "zoneId": 45,
+        "zoneName": "Abyssea-Tahrongi"
+    },
+    {
+        "zoneId": 46,
+        "zoneName": "Open sea route to Al Zahbi"
+    },
+    {
+        "zoneId": 47,
+        "zoneName": "Open sea route to Mhaura"
+    },
+    {
+        "zoneId": 48,
+        "zoneName": "Al Zahbi"
+    },
+    {
+        "zoneId": 49,
+        "zoneName": 49
+    },
+    {
+        "zoneId": 50,
+        "zoneName": "Aht Urhgan Whitegate"
+    },
+    {
+        "zoneId": 51,
+        "zoneName": "Wajaom Woodlands"
+    },
+    {
+        "zoneId": 52,
+        "zoneName": "Bhaflau Thickets"
+    },
+    {
+        "zoneId": 53,
+        "zoneName": "Nashmau"
+    },
+    {
+        "zoneId": 54,
+        "zoneName": "Arrapago Reef"
+    },
+    {
+        "zoneId": 55,
+        "zoneName": "Ilrusi Atoll"
+    },
+    {
+        "zoneId": 56,
+        "zoneName": "Periqia"
+    },
+    {
+        "zoneId": 57,
+        "zoneName": "Talacca Cove"
+    },
+    {
+        "zoneId": 58,
+        "zoneName": "Silver Sea route to Nashmau"
+    },
+    {
+        "zoneId": 59,
+        "zoneName": "Silver Sea route to Al Zahbi"
+    },
+    {
+        "zoneId": 60,
+        "zoneName": "The Ashu Talif"
+    },
+    {
+        "zoneId": 61,
+        "zoneName": "Mount Zhayolm"
+    },
+    {
+        "zoneId": 62,
+        "zoneName": "Halvung"
+    },
+    {
+        "zoneId": 63,
+        "zoneName": "Lebros Cavern"
+    },
+    {
+        "zoneId": 64,
+        "zoneName": "Navukgo Execution Chamber"
+    },
+    {
+        "zoneId": 65,
+        "zoneName": "Mamook"
+    },
+    {
+        "zoneId": 66,
+        "zoneName": "Mamool Ja Training Grounds"
+    },
+    {
+        "zoneId": 67,
+        "zoneName": "Jade Sepulcher"
+    },
+    {
+        "zoneId": 68,
+        "zoneName": "Aydeewa Subterrane"
+    },
+    {
+        "zoneId": 69,
+        "zoneName": "Leujaoam Sanctum"
+    },
+    {
+        "zoneId": 70,
+        "zoneName": "Chocobo Circuit"
+    },
+    {
+        "zoneId": 71,
+        "zoneName": "The Colosseum"
+    },
+    {
+        "zoneId": 72,
+        "zoneName": "Alzadaal Undersea Ruins"
+    },
+    {
+        "zoneId": 73,
+        "zoneName": "Zhayolm Remnants"
+    },
+    {
+        "zoneId": 74,
+        "zoneName": "Arrapago Remnants"
+    },
+    {
+        "zoneId": 75,
+        "zoneName": "Bhaflau Remnants"
+    },
+    {
+        "zoneId": 76,
+        "zoneName": "Silver Sea Remnants"
+    },
+    {
+        "zoneId": 77,
+        "zoneName": "Nyzul Isle"
+    },
+    {
+        "zoneId": 78,
+        "zoneName": "Hazhalm Testing Grounds"
+    },
+    {
+        "zoneId": 79,
+        "zoneName": "Caedarva Mire"
+    },
+    {
+        "zoneId": 80,
+        "zoneName": "Southern San dOria [S]"
+    },
+    {
+        "zoneId": 81,
+        "zoneName": "East Ronfaure [S]"
+    },
+    {
+        "zoneId": 82,
+        "zoneName": "Jugner Forest [S]"
+    },
+    {
+        "zoneId": 83,
+        "zoneName": "Vunkerl Inlet [S]"
+    },
+    {
+        "zoneId": 84,
+        "zoneName": "Batallia Downs [S]"
+    },
+    {
+        "zoneId": 85,
+        "zoneName": "La Vaule [S]"
+    },
+    {
+        "zoneId": 86,
+        "zoneName": "Everbloom Hollow"
+    },
+    {
+        "zoneId": 87,
+        "zoneName": "Bastok Markets [S]"
+    },
+    {
+        "zoneId": 88,
+        "zoneName": "North Gustaberg [S]"
+    },
+    {
+        "zoneId": 89,
+        "zoneName": "Grauberg [S]"
+    },
+    {
+        "zoneId": 90,
+        "zoneName": "Pashhow Marshlands [S]"
+    },
+    {
+        "zoneId": 91,
+        "zoneName": "Rolanberry Fields [S]"
+    },
+    {
+        "zoneId": 92,
+        "zoneName": "Beadeaux [S]"
+    },
+    {
+        "zoneId": 93,
+        "zoneName": "Ruhotz Silvermines"
+    },
+    {
+        "zoneId": 94,
+        "zoneName": "Windurst Waters [S]"
+    },
+    {
+        "zoneId": 95,
+        "zoneName": "West Sarutabaruta [S]"
+    },
+    {
+        "zoneId": 96,
+        "zoneName": "Fort Karugo-Narugo [S]"
+    },
+    {
+        "zoneId": 97,
+        "zoneName": "Meriphataud Mountains [S]"
+    },
+    {
+        "zoneId": 98,
+        "zoneName": "Sauromugue Champaign [S]"
+    },
+    {
+        "zoneId": 99,
+        "zoneName": "Castle Oztroja [S]"
+    },
+    {
+        "zoneId": 100,
+        "zoneName": "West Ronfaure"
+    },
+    {
+        "zoneId": 101,
+        "zoneName": "East Ronfaure"
+    },
+    {
+        "zoneId": 102,
+        "zoneName": "La Theine Plateau"
+    },
+    {
+        "zoneId": 103,
+        "zoneName": "Valkurm Dunes"
+    },
+    {
+        "zoneId": 104,
+        "zoneName": "Jugner Forest"
+    },
+    {
+        "zoneId": 105,
+        "zoneName": "Batallia Downs"
+    },
+    {
+        "zoneId": 106,
+        "zoneName": "North Gustaberg"
+    },
+    {
+        "zoneId": 107,
+        "zoneName": "South Gustaberg"
+    },
+    {
+        "zoneId": 108,
+        "zoneName": "Konschtat Highlands"
+    },
+    {
+        "zoneId": 109,
+        "zoneName": "Pashhow Marshlands"
+    },
+    {
+        "zoneId": 110,
+        "zoneName": "Rolanberry Fields"
+    },
+    {
+        "zoneId": 111,
+        "zoneName": "Beaucedine Glacier"
+    },
+    {
+        "zoneId": 112,
+        "zoneName": "Xarcabard"
+    },
+    {
+        "zoneId": 113,
+        "zoneName": "Cape Teriggan"
+    },
+    {
+        "zoneId": 114,
+        "zoneName": "Eastern Altepa Desert"
+    },
+    {
+        "zoneId": 115,
+        "zoneName": "West Sarutabaruta"
+    },
+    {
+        "zoneId": 116,
+        "zoneName": "East Sarutabaruta"
+    },
+    {
+        "zoneId": 117,
+        "zoneName": "Tahrongi Canyon"
+    },
+    {
+        "zoneId": 118,
+        "zoneName": "Buburimu Peninsula"
+    },
+    {
+        "zoneId": 119,
+        "zoneName": "Meriphataud Mountains"
+    },
+    {
+        "zoneId": 120,
+        "zoneName": "Sauromugue Champaign"
+    },
+    {
+        "zoneId": 121,
+        "zoneName": "The Sanctuary of ZiTah"
+    },
+    {
+        "zoneId": 122,
+        "zoneName": "RoMaeve"
+    },
+    {
+        "zoneId": 123,
+        "zoneName": "Yuhtunga Jungle"
+    },
+    {
+        "zoneId": 124,
+        "zoneName": "Yhoator Jungle"
+    },
+    {
+        "zoneId": 125,
+        "zoneName": "Western Altepa Desert"
+    },
+    {
+        "zoneId": 126,
+        "zoneName": "Qufim Island"
+    },
+    {
+        "zoneId": 127,
+        "zoneName": "Behemoths Dominion"
+    },
+    {
+        "zoneId": 128,
+        "zoneName": "Valley of Sorrows"
+    },
+    {
+        "zoneId": 129,
+        "zoneName": "Ghoyus Reverie"
+    },
+    {
+        "zoneId": 130,
+        "zoneName": "RuAun Gardens"
+    },
+    {
+        "zoneId": 131,
+        "zoneName": "Mordion Gaol"
+    },
+    {
+        "zoneId": 132,
+        "zoneName": "Abyssea-La Theine"
+    },
+    {
+        "zoneId": 133,
+        "zoneName": 133
+    },
+    {
+        "zoneId": 134,
+        "zoneName": "Dynamis-Beaucedine"
+    },
+    {
+        "zoneId": 135,
+        "zoneName": "Dynamis-Xarcabard"
+    },
+    {
+        "zoneId": 136,
+        "zoneName": "Beaucedine Glacier [S]"
+    },
+    {
+        "zoneId": 137,
+        "zoneName": "Xarcabard [S]"
+    },
+    {
+        "zoneId": 138,
+        "zoneName": "Castle Zvahl Baileys [S]"
+    },
+    {
+        "zoneId": 139,
+        "zoneName": "Horlais Peak"
+    },
+    {
+        "zoneId": 140,
+        "zoneName": "Ghelsba Outpost"
+    },
+    {
+        "zoneId": 141,
+        "zoneName": "Fort Ghelsba"
+    },
+    {
+        "zoneId": 142,
+        "zoneName": "Yughott Grotto"
+    },
+    {
+        "zoneId": 143,
+        "zoneName": "Palborough Mines"
+    },
+    {
+        "zoneId": 144,
+        "zoneName": "Waughroon Shrine"
+    },
+    {
+        "zoneId": 145,
+        "zoneName": "Giddeus"
+    },
+    {
+        "zoneId": 146,
+        "zoneName": "Balgas Dais"
+    },
+    {
+        "zoneId": 147,
+        "zoneName": "Beadeaux"
+    },
+    {
+        "zoneId": 148,
+        "zoneName": "Qulun Dome"
+    },
+    {
+        "zoneId": 149,
+        "zoneName": "Davoi"
+    },
+    {
+        "zoneId": 150,
+        "zoneName": "Monastic Cavern"
+    },
+    {
+        "zoneId": 151,
+        "zoneName": "Castle Oztroja"
+    },
+    {
+        "zoneId": 152,
+        "zoneName": "Altar Room"
+    },
+    {
+        "zoneId": 153,
+        "zoneName": "The Boyahda Tree"
+    },
+    {
+        "zoneId": 154,
+        "zoneName": "Dragons Aery"
+    },
+    {
+        "zoneId": 155,
+        "zoneName": "Castle Zvahl Keep [S]"
+    },
+    {
+        "zoneId": 156,
+        "zoneName": "Throne Room [S]"
+    },
+    {
+        "zoneId": 157,
+        "zoneName": "Middle Delkfutts Tower"
+    },
+    {
+        "zoneId": 158,
+        "zoneName": "Upper Delkfutts Tower"
+    },
+    {
+        "zoneId": 159,
+        "zoneName": "Temple of Uggalepih"
+    },
+    {
+        "zoneId": 160,
+        "zoneName": "Den of Rancor"
+    },
+    {
+        "zoneId": 161,
+        "zoneName": "Castle Zvahl Baileys"
+    },
+    {
+        "zoneId": 162,
+        "zoneName": "Castle Zvahl Keep"
+    },
+    {
+        "zoneId": 163,
+        "zoneName": "Sacrificial Chamber"
+    },
+    {
+        "zoneId": 164,
+        "zoneName": "Garlaige Citadel [S]"
+    },
+    {
+        "zoneId": 165,
+        "zoneName": "Throne Room"
+    },
+    {
+        "zoneId": 166,
+        "zoneName": "Ranguemont Pass"
+    },
+    {
+        "zoneId": 167,
+        "zoneName": "Bostaunieux Oubliette"
+    },
+    {
+        "zoneId": 168,
+        "zoneName": "Chamber of Oracles"
+    },
+    {
+        "zoneId": 169,
+        "zoneName": "Toraimarai Canal"
+    },
+    {
+        "zoneId": 170,
+        "zoneName": "Full Moon Fountain"
+    },
+    {
+        "zoneId": 171,
+        "zoneName": "Crawlers Nest [S]"
+    },
+    {
+        "zoneId": 172,
+        "zoneName": "Zeruhn Mines"
+    },
+    {
+        "zoneId": 173,
+        "zoneName": "Korroloka Tunnel"
+    },
+    {
+        "zoneId": 174,
+        "zoneName": "Kuftal Tunnel"
+    },
+    {
+        "zoneId": 175,
+        "zoneName": "The Eldieme Necropolis [S]"
+    },
+    {
+        "zoneId": 176,
+        "zoneName": "Sea Serpent Grotto"
+    },
+    {
+        "zoneId": 177,
+        "zoneName": "VeLugannon Palace"
+    },
+    {
+        "zoneId": 178,
+        "zoneName": "The Shrine of RuAvitau"
+    },
+    {
+        "zoneId": 179,
+        "zoneName": "Stellar Fulcrum"
+    },
+    {
+        "zoneId": 180,
+        "zoneName": "LaLoff Amphitheater"
+    },
+    {
+        "zoneId": 181,
+        "zoneName": "The Celestial Nexus"
+    },
+    {
+        "zoneId": 182,
+        "zoneName": "Walk of Echoes"
+    },
+    {
+        "zoneId": 183,
+        "zoneName": "Maquette Abdhaljs-Legion"
+    },
+    {
+        "zoneId": 184,
+        "zoneName": "Lower Delkfutts Tower"
+    },
+    {
+        "zoneId": 185,
+        "zoneName": "Dynamis-San dOria"
+    },
+    {
+        "zoneId": 186,
+        "zoneName": "Dynamis-Bastok"
+    },
+    {
+        "zoneId": 187,
+        "zoneName": "Dynamis-Windurst"
+    },
+    {
+        "zoneId": 188,
+        "zoneName": "Dynamis-Jeuno"
+    },
+    {
+        "zoneId": 189,
+        "zoneName": "Residential Area"
+    },
+    {
+        "zoneId": 190,
+        "zoneName": "King Ranperres Tomb"
+    },
+    {
+        "zoneId": 191,
+        "zoneName": "Dangruf Wadi"
+    },
+    {
+        "zoneId": 192,
+        "zoneName": "Inner Horutoto Ruins"
+    },
+    {
+        "zoneId": 193,
+        "zoneName": "Ordelles Caves"
+    },
+    {
+        "zoneId": 194,
+        "zoneName": "Outer Horutoto Ruins"
+    },
+    {
+        "zoneId": 195,
+        "zoneName": "The Eldieme Necropolis"
+    },
+    {
+        "zoneId": 196,
+        "zoneName": "Gusgen Mines"
+    },
+    {
+        "zoneId": 197,
+        "zoneName": "Crawlers Nest"
+    },
+    {
+        "zoneId": 198,
+        "zoneName": "Maze of Shakhrami"
+    },
+    {
+        "zoneId": 199,
+        "zoneName": "Residential Area"
+    },
+    {
+        "zoneId": 200,
+        "zoneName": "Garlaige Citadel"
+    },
+    {
+        "zoneId": 201,
+        "zoneName": "Cloister of Gales"
+    },
+    {
+        "zoneId": 202,
+        "zoneName": "Cloister of Storms"
+    },
+    {
+        "zoneId": 203,
+        "zoneName": "Cloister of Frost"
+    },
+    {
+        "zoneId": 204,
+        "zoneName": "FeiYin"
+    },
+    {
+        "zoneId": 205,
+        "zoneName": "Ifrits Cauldron"
+    },
+    {
+        "zoneId": 206,
+        "zoneName": "QuBia Arena"
+    },
+    {
+        "zoneId": 207,
+        "zoneName": "Cloister of Flames"
+    },
+    {
+        "zoneId": 208,
+        "zoneName": "Quicksand Caves"
+    },
+    {
+        "zoneId": 209,
+        "zoneName": "Cloister of Tremors"
+    },
+    {
+        "zoneId": 210,
+        "zoneName": "GM Home"
+    },
+    {
+        "zoneId": 211,
+        "zoneName": "Cloister of Tides"
+    },
+    {
+        "zoneId": 212,
+        "zoneName": "Gustav Tunnel"
+    },
+    {
+        "zoneId": 213,
+        "zoneName": "Labyrinth of Onzozo"
+    },
+    {
+        "zoneId": 214,
+        "zoneName": "Residential Area"
+    },
+    {
+        "zoneId": 215,
+        "zoneName": "Abyssea-Attohwa"
+    },
+    {
+        "zoneId": 216,
+        "zoneName": "Abyssea-Misareaux"
+    },
+    {
+        "zoneId": 217,
+        "zoneName": "Abyssea-Vunkerl"
+    },
+    {
+        "zoneId": 218,
+        "zoneName": "Abyssea-Altepa"
+    },
+    {
+        "zoneId": 219,
+        "zoneName": "Residential Area"
+    },
+    {
+        "zoneId": 220,
+        "zoneName": "Ship bound for Selbina"
+    },
+    {
+        "zoneId": 221,
+        "zoneName": "Ship bound for Mhaura"
+    },
+    {
+        "zoneId": 222,
+        "zoneName": "Provenance"
+    },
+    {
+        "zoneId": 223,
+        "zoneName": "San dOria-Jeuno Airship"
+    },
+    {
+        "zoneId": 224,
+        "zoneName": "Bastok-Jeuno Airship"
+    },
+    {
+        "zoneId": 225,
+        "zoneName": "Windurst-Jeuno Airship"
+    },
+    {
+        "zoneId": 226,
+        "zoneName": "Kazham-Jeuno Airship"
+    },
+    {
+        "zoneId": 227,
+        "zoneName": "Ship bound for Selbina"
+    },
+    {
+        "zoneId": 228,
+        "zoneName": "Ship bound for Mhaura"
+    },
+    {
+        "zoneId": 229,
+        "zoneName": 229
+    },
+    {
+        "zoneId": 230,
+        "zoneName": "Southern San dOria"
+    },
+    {
+        "zoneId": 231,
+        "zoneName": "Northern San dOria"
+    },
+    {
+        "zoneId": 232,
+        "zoneName": "Port San dOria"
+    },
+    {
+        "zoneId": 233,
+        "zoneName": "Chateau dOraguille"
+    },
+    {
+        "zoneId": 234,
+        "zoneName": "Bastok Mines"
+    },
+    {
+        "zoneId": 235,
+        "zoneName": "Bastok Markets"
+    },
+    {
+        "zoneId": 236,
+        "zoneName": "Port Bastok"
+    },
+    {
+        "zoneId": 237,
+        "zoneName": "Metalworks"
+    },
+    {
+        "zoneId": 238,
+        "zoneName": "Windurst Waters"
+    },
+    {
+        "zoneId": 239,
+        "zoneName": "Windurst Walls"
+    },
+    {
+        "zoneId": 240,
+        "zoneName": "Port Windurst"
+    },
+    {
+        "zoneId": 241,
+        "zoneName": "Windurst Woods"
+    },
+    {
+        "zoneId": 242,
+        "zoneName": "Heavens Tower"
+    },
+    {
+        "zoneId": 243,
+        "zoneName": "RuLude Gardens"
+    },
+    {
+        "zoneId": 244,
+        "zoneName": "Upper Jeuno"
+    },
+    {
+        "zoneId": 245,
+        "zoneName": "Lower Jeuno"
+    },
+    {
+        "zoneId": 246,
+        "zoneName": "Port Jeuno"
+    },
+    {
+        "zoneId": 247,
+        "zoneName": "Rabao"
+    },
+    {
+        "zoneId": 248,
+        "zoneName": "Selbina"
+    },
+    {
+        "zoneId": 249,
+        "zoneName": "Mhaura"
+    },
+    {
+        "zoneId": 250,
+        "zoneName": "Kazham"
+    },
+    {
+        "zoneId": 251,
+        "zoneName": "Hall of the Gods"
+    },
+    {
+        "zoneId": 252,
+        "zoneName": "Norg"
+    },
+    {
+        "zoneId": 253,
+        "zoneName": "Abyssea-Uleguerand"
+    },
+    {
+        "zoneId": 254,
+        "zoneName": "Abyssea-Grauberg"
+    },
+    {
+        "zoneId": 255,
+        "zoneName": "Abyssea-Empyreal Paradox"
+    },
+    {
+        "zoneId": 256,
+        "zoneName": "Western Adoulin"
+    },
+    {
+        "zoneId": 257,
+        "zoneName": "Eastern Adoulin"
+    },
+    {
+        "zoneId": 258,
+        "zoneName": "Rala Waterways"
+    },
+    {
+        "zoneId": 259,
+        "zoneName": "Rala Waterways U"
+    },
+    {
+        "zoneId": 260,
+        "zoneName": "Yahse Hunting Grounds"
+    },
+    {
+        "zoneId": 261,
+        "zoneName": "Ceizak Battlegrounds"
+    },
+    {
+        "zoneId": 262,
+        "zoneName": "Foret de Hennetiel"
+    },
+    {
+        "zoneId": 263,
+        "zoneName": "Yorcia Weald"
+    },
+    {
+        "zoneId": 264,
+        "zoneName": "Yorcia Weald U"
+    },
+    {
+        "zoneId": 265,
+        "zoneName": "Morimar Basalt Fields"
+    },
+    {
+        "zoneId": 266,
+        "zoneName": "Marjami Ravine"
+    },
+    {
+        "zoneId": 267,
+        "zoneName": "Kamihr Drifts"
+    },
+    {
+        "zoneId": 268,
+        "zoneName": "Sih Gates"
+    },
+    {
+        "zoneId": 269,
+        "zoneName": "Moh Gates"
+    },
+    {
+        "zoneId": 270,
+        "zoneName": "Cirdas Caverns"
+    },
+    {
+        "zoneId": 271,
+        "zoneName": "Cirdas Caverns U"
+    },
+    {
+        "zoneId": 272,
+        "zoneName": "Dho Gates"
+    },
+    {
+        "zoneId": 273,
+        "zoneName": "Woh Gates"
+    },
+    {
+        "zoneId": 274,
+        "zoneName": "Outer RaKaznar"
+    },
+    {
+        "zoneId": 275,
+        "zoneName": "Outer RaKaznar U"
+    },
+    {
+        "zoneId": 276,
+        "zoneName": "RaKaznar Inner Court"
+    },
+    {
+        "zoneId": 277,
+        "zoneName": "RaKaznar Turris"
+    },
+    {
+        "zoneId": 278,
+        "zoneName": 278
+    },
+    {
+        "zoneId": 279,
+        "zoneName": 279
+    },
+    {
+        "zoneId": 280,
+        "zoneName": "Mog Garden"
+    },
+    {
+        "zoneId": 281,
+        "zoneName": "Leafallia"
+    },
+    {
+        "zoneId": 282,
+        "zoneName": "Mount Kamihr"
+    },
+    {
+        "zoneId": 283,
+        "zoneName": "Silver Knife"
+    },
+    {
+        "zoneId": 284,
+        "zoneName": "Celennia Memorial Library"
+    },
+    {
+        "zoneId": 285,
+        "zoneName": "Feretory"
+    },
+    {
+        "zoneId": 286,
+        "zoneName": 286
+    },
+    {
+        "zoneId": 287,
+        "zoneName": 287
+    },
+    {
+        "zoneId": 288,
+        "zoneName": "Escha ZiTah"
+    },
+    {
+        "zoneId": 289,
+        "zoneName": "Escha RuAun"
+    },
+    {
+        "zoneId": 290,
+        "zoneName": "Desuetia Empyreal Paradox"
+    },
+    {
+        "zoneId": 291,
+        "zoneName": "Reisenjima"
+    },
+    {
+        "zoneId": 292,
+        "zoneName": "Reisenjima Henge"
+    },
+    {
+        "zoneId": 293,
+        "zoneName": "Reisenjima Sanctorium"
+    },
+    {
+        "zoneId": 294,
+        "zoneName": "Dynamis-San dOria [D]"
+    },
+    {
+        "zoneId": 295,
+        "zoneName": "Dynamis-Bastok [D]"
+    },
+    {
+        "zoneId": 296,
+        "zoneName": "Dynamis-Windurst [D]"
+    },
+    {
+        "zoneId": 297,
+        "zoneName": "Dynamis-Jeuno [D]"
+    }
+]
