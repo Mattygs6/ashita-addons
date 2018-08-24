@@ -52,6 +52,7 @@ tick.backdrop_str = '__tick_backdrop';
 tick.enabled = false;
 tick.timer_str = '__tick_timer';
 tick.timer_val = 0;
+tick.timer_threshold = 4;
 tick.mp = 0;
 tick.mp_delta = 0;
 tick.mp_delta_str = '__tick_mp_delta';
@@ -304,7 +305,7 @@ ashita.register_event('incoming_packet', function(id, size, data)
                 if (tick.timer_val ~= 0) then
                     tick.mp_refresh_count = tick.mp_refresh_count + 1;
 
-                    if (tick.refresh_command ~= nil and (tick.timer_val - os.time()) < 4) then
+                    if (tick.refresh_command ~= nil and (tick.timer_val - os.time()) < tick.timer_threshold) then
                         AshitaCore:GetChatManager():QueueCommand('/ac enable', 1);
                     end
                 end
@@ -384,9 +385,26 @@ ashita.register_event('command', function(cmd, nType)
         return true;
     end
 
+    if (args[2] == 'threshold' and args[3] ~= nil) then
+        local seconds = tonumber(args[3]);
+        if (seconds < 4) then
+            seconds = 4;
+        end
+
+        if (seconds > 9) then
+            seconds = 9;
+        end
+
+        tick.timer_threshold = seconds;
+        print('[tick] Threshold: ' .. seconds);
+
+        return true;
+    end
+
     -- Prints the addon help..
     print_help('/tick', {
-        { '/tick reset', '- Resets the tick timer (should display "-" when not resting)' }
+        { '/tick reset', '- Resets the tick timer (should display "-" when not resting)' },
+        { '/tick threshold {seconds}', '- Sets the timer threshold for enabling ashitacast range: 3<s<10' }
     });
     return true;
 end);
