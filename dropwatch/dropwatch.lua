@@ -56,6 +56,7 @@ dropwatch.handle_incoming_message = function (mode, text)
     end
 
     if mode == 36 or mode == 121 then
+        --local kill_confirmation_regex = dropwatch.playerName .. ' defeats the (.*)%.'
         local kill_confirmation_regex = ' defeats the (.*)%.'
         local killed_mob_name = string.match(text, kill_confirmation_regex)
         local key
