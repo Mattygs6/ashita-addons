@@ -109,9 +109,9 @@ ashita.register_event('incoming_text', function(mode, chat)
             end
         end
 
-        if(allowed == false) then
-            print('filtered : ' .. chat)
-        end
+        -- if(allowed == false) then
+        --     print('filtered : ' .. chat)
+        -- end
 
         return not(allowed)
     end
