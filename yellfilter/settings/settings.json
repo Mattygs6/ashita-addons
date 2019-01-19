@@ -1,4 +1,4 @@
 {
-    "disable": true,
+    "disable": false,
     "filters": [ "WTS", "WTB", "LFG", "LFP", "LFM" ]
 }
