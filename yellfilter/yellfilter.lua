@@ -41,6 +41,9 @@ local default_config =
         "LFG",
         "LFP",
         "LFM"
+    },
+    filters_regex = {
+        "%d+K"
     }
 };
 local configs = default_config;
@@ -91,6 +94,7 @@ end);
 ---------------------------------------------------------------------------------------------------
 ashita.register_event('incoming_text', function(mode, chat)
 
+    chat = ParseAutoTranslate(chat, false)
     -- print('mode: ' .. mode)
     -- print('chat: ' .. chat)
 
@@ -103,7 +107,14 @@ ashita.register_event('incoming_text', function(mode, chat)
 
         local allowed = false
         for _,filter in ipairs(configs.filters) do
-            if (string.match(chat, filter)) then
+            if (string.contains(chat, filter)) then
+                allowed = true
+                break
+            end
+        end
+
+        for _,filter in ipairs(configs.filters_regex) do
+            if (string.find(chat, filter)) then
                 allowed = true
                 break
             end
