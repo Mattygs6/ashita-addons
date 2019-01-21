@@ -36,14 +36,20 @@ local default_config =
 {
     disable = false,
     filters = {
+        "%d+K",
         "WTS",
         "WTB",
         "LFG",
         "LFP",
-        "LFM"
-    },
-    filters_regex = {
-        "%d+K"
+        "LFM",
+        "Teleport-Yhoat",
+        "Teleport-Dem",
+        "Teleport-Holla",
+        "Teleport-Mea",
+        "Teleport-Vahzl",
+        "Teleport-Altep",
+        "Looking for Party",
+        "Looking for members"
     }
 };
 local configs = default_config;
@@ -108,13 +114,6 @@ ashita.register_event('incoming_text', function(mode, chat)
         local allowed = false
         for _,filter in ipairs(configs.filters) do
             if (string.contains(chat, filter)) then
-                allowed = true
-                break
-            end
-        end
-
-        for _,filter in ipairs(configs.filters_regex) do
-            if (string.find(chat, filter)) then
                 allowed = true
                 break
             end

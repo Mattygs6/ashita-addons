@@ -1,5 +1,19 @@
 {
     "disable": false,
-    "filters": [ "WTS", "WTB", "LFG", "LFP", "LFM", "Teleport-Yhoat", "Teleport-Dem", "Teleport-Holla", "Teleport-Mea", "Teleport-Vahzl", "Teleport-Altep", "Looking for Party", "Looking for members" ],
-    "filters_regex": [ "%d+K" ]
+    "filters": [
+        "%d+K",
+        "WTS",
+        "WTB",
+        "LFG",
+        "LFP",
+        "LFM",
+        "Teleport-Yhoat",
+        "Teleport-Dem",
+        "Teleport-Holla",
+        "Teleport-Mea",
+        "Teleport-Vahzl",
+        "Teleport-Altep",
+        "Looking for Party",
+        "Looking for members"
+    ]
 }
