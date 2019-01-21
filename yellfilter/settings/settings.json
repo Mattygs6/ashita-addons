@@ -1,19 +1,4 @@
 {
     "disable": false,
-    "filters": [
-        "%d+K",
-        "WTS",
-        "WTB",
-        "LFG",
-        "LFP",
-        "LFM",
-        "Teleport-Yhoat",
-        "Teleport-Dem",
-        "Teleport-Holla",
-        "Teleport-Mea",
-        "Teleport-Vahzl",
-        "Teleport-Altep",
-        "Looking for Party",
-        "Looking for members"
-    ]
+    "filters": [ "%d+k", "wts", "wtb", "lfg", "lfp", "lfm", "teleport-yhoat", "teleport-dem", "teleport-holla", "teleport-mea", "teleport-vahzl", "teleport-altep", "looking for party", "looking for members" ]
 }

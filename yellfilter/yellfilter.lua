@@ -36,20 +36,20 @@ local default_config =
 {
     disable = false,
     filters = {
-        "%d+K",
-        "WTS",
-        "WTB",
-        "LFG",
-        "LFP",
-        "LFM",
-        "Teleport-Yhoat",
-        "Teleport-Dem",
-        "Teleport-Holla",
-        "Teleport-Mea",
-        "Teleport-Vahzl",
-        "Teleport-Altep",
-        "Looking for Party",
-        "Looking for members"
+        "%d+k",
+        "wts",
+        "wtb",
+        "lfg",
+        "lfp",
+        "lfm",
+        "teleport-yhoat",
+        "teleport-dem",
+        "teleport-holla",
+        "teleport-mea",
+        "teleport-vahzl",
+        "teleport-altep",
+        "looking for party",
+        "looking for members"
     }
 };
 local configs = default_config;
@@ -100,7 +100,8 @@ end);
 ---------------------------------------------------------------------------------------------------
 ashita.register_event('incoming_text', function(mode, chat)
 
-    chat = ParseAutoTranslate(chat, false)
+    chat = ParseAutoTranslate(chat, false):lower()
+
     -- print('mode: ' .. mode)
     -- print('chat: ' .. chat)
 
@@ -159,7 +160,7 @@ ashita.register_event('command', function(cmd, nType)
         end
         local filter = table.concat(rest, " ")
 
-        configs.filters[#configs.filters+1] = filter
+        configs.filters[#configs.filters+1] = filter:lower()
         return true;
     end
 
